@@ -2,7 +2,7 @@
 Ticket Agent
 """
 
-from services.ticket_service import TicketService
+from backend.services.ticket_service import TicketService
 
 from ticket.image_generator import TicketImageGenerator
 from ticket.pdf_generator import PDFGenerator
