@@ -3,7 +3,8 @@ Simple RAG Engine
 Version 1
 """
 
-from rag.knowledge_base import KNOWLEDGE_BASE
+
+from backend.rag.knowledge_base import KNOWLEDGE_BASE
 
 
 class RAGEngine:
