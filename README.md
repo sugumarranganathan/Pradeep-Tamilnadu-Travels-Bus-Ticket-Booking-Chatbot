@@ -8,7 +8,7 @@ The project follows an **Agentic AI** approach where multiple specialised agents
 
 ---
 
-# 🚀 Features
+#  Features
 
 - 🤖 AI-powered conversational chatbot
 - 🚌 Bus ticket booking
@@ -337,27 +337,10 @@ Pradeep-Tamilnadu-Travels-Bus-Ticket-Booking-Chatbot
 - ✅ Modular project structure
 - ✅ Google Colab deployment
 
----
-
-# 🚀 Future Enhancements
-
-- 📄 Ticket PDF generation
-- 🖼️ Ticket image generation
-- 📥 PDF download option
-- 💳 Online payment integration
-- ❌ Ticket cancellation
-- 📜 Booking history
-- 📧 Email notifications
-- 📱 SMS notifications
-- 🗄️ Database integration
-- 🧠 RAG-based knowledge base
-- 🌐 Multi-language support
-- 📊 Admin dashboard
-- ☁️ Cloud deployment
 
 ---
 
-# 📌 Conclusion
+#  Conclusion
 
 **Pradeep Tamilnadu Travels – AI Powered Multi-Agent Bus Ticket Booking Chatbot** demonstrates how **Generative AI**, **Agentic AI**, and a **Multi-Agent Architecture** can work together to automate a conversational bus ticket booking system.
 
