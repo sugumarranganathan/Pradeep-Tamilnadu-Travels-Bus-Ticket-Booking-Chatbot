@@ -2,7 +2,8 @@
 AutoGen Workflow
 """
 
-from autogen.team import AgentTeam
+
+from backend.autogen.team import AgentTeam
 
 
 class AgentWorkflow:
