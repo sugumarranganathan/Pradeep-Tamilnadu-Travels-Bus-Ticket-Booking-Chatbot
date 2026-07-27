@@ -5,8 +5,8 @@ Pradeep Tamilnadu Travels Bus Ticket Booking Chatbot
 
 from backend.conversation.menu import WELCOME_MENU
 from backend.conversation.state_machine import ConversationState
-from backend.booking_flow import BookingFlow
-from backend.session_manager import SessionManager
+from backend.conversation.booking_flow import BookingFlow
+from backend.conversation.session_manager import SessionManager
 
 from agents.ticket_agent import TicketAgent
 from utils.ticket_formatter import format_ticket
