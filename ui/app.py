@@ -1,9 +1,14 @@
+"""
+Gradio UI
+Pradeep Tamilnadu Travels Bus Ticket Booking Chatbot
+"""
+
 import gradio as gr
 
-from theme import theme
-from components import APP_TITLE
-from chatbot_ui import chatbot_reply
-from seat_ui import create_seat_buttons
+from ui.theme import theme
+from ui.components import APP_TITLE
+from ui.chatbot_ui import chatbot_reply
+from ui.seat_ui import create_seat_buttons
 
 
 def menu_click(option, history):
@@ -27,7 +32,8 @@ with gr.Blocks(
 
         user_input = gr.Textbox(
             placeholder="Type your message...",
-            scale=8
+            scale=8,
+            label="Your Message"
         )
 
         send = gr.Button(
@@ -35,7 +41,7 @@ with gr.Blocks(
             scale=2
         )
 
-    gr.Markdown("### 🚀 Quick Menu")
+    gr.Markdown("## 🚀 Quick Menu")
 
     with gr.Row():
 
@@ -53,7 +59,10 @@ with gr.Blocks(
     # Seat Selection
     # ----------------------------------
 
-    with gr.Accordion("🪑 Seat Selection", open=False):
+    with gr.Accordion(
+        "🪑 Seat Selection",
+        open=False
+    ):
 
         create_seat_buttons()
 
@@ -62,7 +71,19 @@ with gr.Blocks(
     # ----------------------------------
 
     send.click(
-        chatbot_reply,
+        fn=chatbot_reply,
+        inputs=[
+            user_input,
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
+    )
+
+    user_input.submit(
+        fn=chatbot_reply,
         inputs=[
             user_input,
             chatbot
@@ -78,7 +99,7 @@ with gr.Blocks(
     # ----------------------------------
 
     btn1.click(
-        menu_click,
+        fn=menu_click,
         inputs=[
             "1",
             chatbot
@@ -90,7 +111,7 @@ with gr.Blocks(
     )
 
     btn2.click(
-        menu_click,
+        fn=menu_click,
         inputs=[
             "2",
             chatbot
@@ -102,7 +123,7 @@ with gr.Blocks(
     )
 
     btn3.click(
-        menu_click,
+        fn=menu_click,
         inputs=[
             "3",
             chatbot
@@ -114,7 +135,7 @@ with gr.Blocks(
     )
 
     btn4.click(
-        menu_click,
+        fn=menu_click,
         inputs=[
             "4",
             chatbot
@@ -126,7 +147,7 @@ with gr.Blocks(
     )
 
     btn5.click(
-        menu_click,
+        fn=menu_click,
         inputs=[
             "5",
             chatbot
@@ -138,7 +159,7 @@ with gr.Blocks(
     )
 
     btn6.click(
-        menu_click,
+        fn=menu_click,
         inputs=[
             "6",
             chatbot
