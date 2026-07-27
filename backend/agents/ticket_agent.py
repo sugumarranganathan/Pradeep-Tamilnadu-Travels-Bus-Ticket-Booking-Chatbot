@@ -2,11 +2,17 @@
 Ticket Agent
 """
 
-from services.ticket_service import create_ticket
+from services.ticket_service import TicketService
 
 
 class TicketAgent:
 
-    def generate(self, booking_data):
+    def __init__(self):
 
-        return create_ticket(booking_data)
+        self.ticket_service = TicketService()
+
+    def generate(self, booking):
+
+        return self.ticket_service.generate_ticket(
+            booking
+        )
