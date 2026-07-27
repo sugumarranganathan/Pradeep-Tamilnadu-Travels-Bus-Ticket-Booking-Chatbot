@@ -13,11 +13,23 @@ def chatbot_reply(message, history):
     if history is None:
         history = []
 
-    if not message or message.strip() == "":
+    if not message or not message.strip():
         return "", history
 
     reply = manager.reply(message)
 
-    history.append((message, reply))
+    history.append(
+        {
+            "role": "user",
+            "content": message
+        }
+    )
+
+    history.append(
+        {
+            "role": "assistant",
+            "content": reply
+        }
+    )
 
     return "", history
