@@ -11,6 +11,9 @@ from conversation.session_manager import SessionManager
 from agents.ticket_agent import TicketAgent
 from utils.ticket_formatter import format_ticket
 
+# AutoGen Workflow
+from autogen.workflow import AgentWorkflow
+
 
 class ConversationManager:
 
@@ -19,6 +22,9 @@ class ConversationManager:
         self.session = SessionManager()
         self.flow = BookingFlow()
         self.ticket_agent = TicketAgent()
+
+        # AutoGen Workflow
+        self.workflow = AgentWorkflow()
 
     def reply(self, user_message):
 
@@ -40,7 +46,12 @@ class ConversationManager:
         # ------------------------------------
         if state == ConversationState.MAIN_MENU:
 
+            # -------------------------
+            # Book Ticket
+            # -------------------------
             if user_message == "1":
+
+                self.workflow.process("book ticket")
 
                 self.session.set_state(
                     ConversationState.ROUTE_SELECTION
@@ -58,7 +69,12 @@ class ConversationManager:
 4. Chennai → Trichy
 """
 
+            # -------------------------
+            # Bus Timings
+            # -------------------------
             elif user_message == "2":
+
+                self.workflow.process("route timings")
 
                 return """
 🕒 Bus Timings
@@ -72,7 +88,12 @@ class ConversationManager:
 4. Chennai → Trichy : 06:30 AM | 09:00 PM
 """
 
+            # -------------------------
+            # Fare Details
+            # -------------------------
             elif user_message == "3":
+
+                self.workflow.process("route fare")
 
                 return """
 💰 Fare Details
@@ -86,7 +107,12 @@ Chennai → Salem : ₹850
 Chennai → Trichy : ₹780
 """
 
+            # -------------------------
+            # Available Routes
+            # -------------------------
             elif user_message == "4":
+
+                self.workflow.process("available routes")
 
                 return """
 🛣 Available Routes
@@ -100,7 +126,12 @@ Chennai → Trichy : ₹780
 • Chennai → Trichy
 """
 
+            # -------------------------
+            # Cancellation Policy
+            # -------------------------
             elif user_message == "5":
+
+                self.workflow.process("cancellation policy")
 
                 return """
 ❌ Cancellation Policy
@@ -112,7 +143,12 @@ Chennai → Trichy : ₹780
 • Less Than 12 Hours : No Refund
 """
 
+            # -------------------------
+            # Customer Support
+            # -------------------------
             elif user_message == "6":
+
+                self.workflow.process("customer support")
 
                 return """
 📞 Customer Support
@@ -138,6 +174,9 @@ Email : support@pradeeptravels.com
         # ------------------------------------
 
         if self.session.get_state() == ConversationState.GENERATE_TICKET:
+
+            # AutoGen Ticket Workflow
+            self.workflow.process("generate ticket")
 
             booking = self.session.get_booking()
 
