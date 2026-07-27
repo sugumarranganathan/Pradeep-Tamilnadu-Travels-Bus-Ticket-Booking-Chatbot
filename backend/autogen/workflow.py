@@ -14,26 +14,34 @@ class AgentWorkflow:
 
         task = task.lower()
 
-        # Route search
+        # -----------------------------
+        # Booking / Route
+        # -----------------------------
         if any(word in task for word in [
-            "route", "madurai", "coimbatore",
-            "salem", "trichy", "chennai",
+            "book", "booking", "ticket",
+            "route", "madurai",
+            "coimbatore", "salem",
+            "trichy", "chennai",
             "bus", "travel"
         ]):
-            return self.team.booking.execute(task)
+            return self.team.booking.start_booking()
 
-        # Booking
-        elif any(word in task for word in [
-            "book", "booking", "ticket"
-        ]):
-            return self.team.booking.execute(task)
-
-        # Ticket generation
+        # -----------------------------
+        # Generate Ticket
+        # -----------------------------
         elif any(word in task for word in [
             "generate", "pdf"
         ]):
-            return self.team.ticket.execute(task)
 
-        # Customer support
+            # Ticket generation is handled by ConversationManager
+            return {
+                "status": "Ticket generation started"
+            }
+
+        # -----------------------------
+        # Support
+        # -----------------------------
         else:
-            return self.team.support.execute(task)
+            return {
+                "status": "Support request received"
+            }
