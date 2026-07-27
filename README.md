@@ -439,23 +439,7 @@ Pradeep-Tamilnadu-Travels-Bus-Ticket-Booking-Chatbot
 - ✅ Hugging Face Compatible
 - ✅ Modular & Scalable Design
 
----
 
-# 🚀 Future Enhancements
-
-- Online Payment Gateway
-- Live Bus Tracking
-- Booking History
-- Ticket Cancellation
-- Ticket Rescheduling
-- Email & SMS Notifications
-- Database Integration
-- RAG-based Knowledge Base
-- Multi-language Support
-- Admin Dashboard
-- Analytics Dashboard
-
----
 
 # 📌 Conclusion
 
