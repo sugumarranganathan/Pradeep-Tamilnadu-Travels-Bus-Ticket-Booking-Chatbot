@@ -3,7 +3,7 @@ Ticket Image Generator
 Version 1
 """
 
-from ticket.ticket_template import TicketTemplate
+from backend.ticket.ticket_template import TicketTemplate
 
 
 class TicketImageGenerator:
