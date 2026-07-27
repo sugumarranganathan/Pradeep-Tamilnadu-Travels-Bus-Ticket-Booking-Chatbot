@@ -2,7 +2,8 @@
 Booking Service
 """
 
-from database.sample_data import ROUTES, BUSES
+
+from backend.database.sample_data import ROUTES, BUSES
 
 
 def get_routes():
