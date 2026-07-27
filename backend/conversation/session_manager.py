@@ -2,8 +2,7 @@
 Session Manager
 """
 
-from conversation.state_machine import ConversationState
-
+from backend.conversation.state_machine import ConversationState
 
 class SessionManager:
 
