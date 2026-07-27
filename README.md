@@ -41,6 +41,19 @@ The project follows an **Agentic AI** approach where multiple specialised agents
 
 ---
 
+Why OOP is Best for This Project?
+
+| **Without OOP**                                   | **With OOP**                                                    |
+| ------------------------------------------------- | --------------------------------------------------------------- |
+| All booking logic is mixed in functions.          | Each agent has its own class and responsibility.                |
+| Difficult to maintain as the project grows.       | Easy to maintain and extend.                                    |
+| Hard to add new features.                         | New agents can be added easily.                                 |
+| Code becomes lengthy and difficult to understand. | Code is clean, modular, and readable.                           |
+| Agent communication is difficult to manage.       | Agents communicate through the `ConversationManager`.           |
+| Debugging requires searching many functions.      | Debugging is easier because each class handles a specific task. |
+
+---
+
 # 🧠 System Architecture
 
 ```text
