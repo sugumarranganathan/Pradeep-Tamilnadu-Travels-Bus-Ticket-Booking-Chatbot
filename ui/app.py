@@ -11,13 +11,35 @@ from ui.chatbot_ui import chatbot_reply
 from ui.seat_ui import create_seat_buttons
 
 
-def menu_click(option, history):
+# -----------------------------
+# Quick Menu Wrappers
+# -----------------------------
 
-    return chatbot_reply(option, history)
+def book_ticket(history):
+    return chatbot_reply("1", history)
+
+
+def bus_timings(history):
+    return chatbot_reply("2", history)
+
+
+def fare(history):
+    return chatbot_reply("3", history)
+
+
+def routes(history):
+    return chatbot_reply("4", history)
+
+
+def cancellation(history):
+    return chatbot_reply("5", history)
+
+
+def support(history):
+    return chatbot_reply("6", history)
 
 
 with gr.Blocks(
-    theme=theme,
     title="Pradeep Tamilnadu Travels Bus Ticket Booking Chatbot"
 ) as demo:
 
@@ -32,8 +54,8 @@ with gr.Blocks(
 
         user_input = gr.Textbox(
             placeholder="Type your message...",
-            scale=8,
-            label="Your Message"
+            label="Your Message",
+            scale=8
         )
 
         send = gr.Button(
@@ -44,132 +66,77 @@ with gr.Blocks(
     gr.Markdown("## 🚀 Quick Menu")
 
     with gr.Row():
-
         btn1 = gr.Button("🚌 Book Ticket")
         btn2 = gr.Button("🕒 Bus Timings")
         btn3 = gr.Button("💰 Fare")
 
     with gr.Row():
-
         btn4 = gr.Button("🛣 Routes")
         btn5 = gr.Button("❌ Cancellation")
         btn6 = gr.Button("📞 Support")
 
-    # ----------------------------------
-    # Seat Selection
-    # ----------------------------------
-
-    with gr.Accordion(
-        "🪑 Seat Selection",
-        open=False
-    ):
-
+    with gr.Accordion("🪑 Seat Selection", open=False):
         create_seat_buttons()
 
-    # ----------------------------------
-    # Send Button
-    # ----------------------------------
+    # -----------------------------
+    # Chat
+    # -----------------------------
 
     send.click(
         fn=chatbot_reply,
-        inputs=[
-            user_input,
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        inputs=[user_input, chatbot],
+        outputs=[user_input, chatbot]
     )
 
     user_input.submit(
         fn=chatbot_reply,
-        inputs=[
-            user_input,
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        inputs=[user_input, chatbot],
+        outputs=[user_input, chatbot]
     )
 
-    # ----------------------------------
-    # Quick Menu Buttons
-    # ----------------------------------
+    # -----------------------------
+    # Quick Menu
+    # -----------------------------
 
     btn1.click(
-        fn=menu_click,
-        inputs=[
-            "1",
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        fn=book_ticket,
+        inputs=[chatbot],
+        outputs=[user_input, chatbot]
     )
 
     btn2.click(
-        fn=menu_click,
-        inputs=[
-            "2",
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        fn=bus_timings,
+        inputs=[chatbot],
+        outputs=[user_input, chatbot]
     )
 
     btn3.click(
-        fn=menu_click,
-        inputs=[
-            "3",
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        fn=fare,
+        inputs=[chatbot],
+        outputs=[user_input, chatbot]
     )
 
     btn4.click(
-        fn=menu_click,
-        inputs=[
-            "4",
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        fn=routes,
+        inputs=[chatbot],
+        outputs=[user_input, chatbot]
     )
 
     btn5.click(
-        fn=menu_click,
-        inputs=[
-            "5",
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        fn=cancellation,
+        inputs=[chatbot],
+        outputs=[user_input, chatbot]
     )
 
     btn6.click(
-        fn=menu_click,
-        inputs=[
-            "6",
-            chatbot
-        ],
-        outputs=[
-            user_input,
-            chatbot
-        ]
+        fn=support,
+        inputs=[chatbot],
+        outputs=[user_input, chatbot]
     )
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(
+        share=True,
+        theme=theme
+    )
