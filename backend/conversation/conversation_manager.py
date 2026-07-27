@@ -8,7 +8,8 @@ from backend.conversation.state_machine import ConversationState
 from backend.conversation.booking_flow import BookingFlow
 from backend.conversation.session_manager import SessionManager
 
-from agents.ticket_agent import TicketAgent
+
+from backend.agents.ticket_agent import TicketAgent
 from utils.ticket_formatter import format_ticket
 
 # AutoGen Workflow
