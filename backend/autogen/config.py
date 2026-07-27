@@ -1,0 +1,7 @@
+"""
+AutoGen Configuration
+"""
+
+AUTOGEN_MODEL = "llama-3.3-70b-versatile"
+
+AUTOGEN_PROVIDER = "Groq"
