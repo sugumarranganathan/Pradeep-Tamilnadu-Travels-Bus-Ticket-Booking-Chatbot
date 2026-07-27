@@ -1,5 +1,7 @@
 # 🚌 Pradeep Tamilnadu Travels - AI Powered Multi-Agent Bus Ticket Booking Chatbot
 
+https://colab.research.google.com/drive/12x7512A0Yoydvs-msGvGUQueNlpnZ7fl#scrollTo=GvctXETG9DFu
+
 An intelligent **AI-powered Bus Ticket Booking Chatbot** developed using **Python, Gradio, Generative AI (GenAI), Multi-Agent Architecture, and an AutoGen-inspired workflow**. The chatbot enables users to book bus tickets, check bus timings, view fare details, browse available routes, contact customer support, and generate professional ticket PDFs through a conversational interface.
 
 The project follows an **Agentic AI** approach where multiple AI agents collaborate to complete the entire booking process. Each agent is responsible for a specific task while the **Conversation Manager** coordinates the workflow from user interaction to ticket generation.
