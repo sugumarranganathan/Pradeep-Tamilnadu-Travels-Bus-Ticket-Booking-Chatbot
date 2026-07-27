@@ -10,7 +10,7 @@ from backend.conversation.session_manager import SessionManager
 
 
 from backend.agents.ticket_agent import TicketAgent
-from utils.ticket_formatter import format_ticket
+from backend.utils.ticket_formatter import format_ticket
 
 # AutoGen Workflow
 from autogen.workflow import AgentWorkflow
