@@ -2,7 +2,8 @@
 Booking Agent
 """
 
-from services.booking_service import get_routes
+
+from backend.services.booking_service import get_routes
 
 
 class BookingAgent:
