@@ -1,1 +1,22 @@
-s
+[
+    {
+        "id": 1,
+        "from": "Chennai",
+        "to": "Madurai"
+    },
+    {
+        "id": 2,
+        "from": "Chennai",
+        "to": "Coimbatore"
+    },
+    {
+        "id": 3,
+        "from": "Chennai",
+        "to": "Salem"
+    },
+    {
+        "id": 4,
+        "from": "Chennai",
+        "to": "Trichy"
+    }
+]
