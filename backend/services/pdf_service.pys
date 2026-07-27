@@ -1,1 +1,20 @@
-s
+"""
+PDF Service
+
+Version 1
+
+PDF generation will be implemented later.
+"""
+
+
+def generate_pdf(ticket):
+
+    return {
+
+        "status": "success",
+
+        "message": "PDF Generated",
+
+        "file_name": f'{ticket["ticket_number"]}.pdf'
+
+    }
