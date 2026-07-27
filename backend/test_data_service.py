@@ -1,4 +1,5 @@
-from services.data_service import DataService
+
+from backend.services.data_service import DataService
 
 service = DataService()
 
