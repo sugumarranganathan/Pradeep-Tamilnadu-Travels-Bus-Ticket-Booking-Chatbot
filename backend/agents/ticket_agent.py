@@ -4,8 +4,11 @@ Ticket Agent
 
 from backend.services.ticket_service import TicketService
 
-from ticket.image_generator import TicketImageGenerator
-from ticket.pdf_generator import PDFGenerator
+
+from backend.ticket.image_generator import TicketImageGenerator
+
+
+from backend.ticket.pdf_generator import PDFGenerator
 
 
 class TicketAgent:
