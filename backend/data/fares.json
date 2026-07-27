@@ -1,1 +1,18 @@
-s
+[
+    {
+        "route": "Chennai → Madurai",
+        "fare": 950
+    },
+    {
+        "route": "Chennai → Coimbatore",
+        "fare": 1100
+    },
+    {
+        "route": "Chennai → Salem",
+        "fare": 850
+    },
+    {
+        "route": "Chennai → Trichy",
+        "fare": 780
+    }
+]
