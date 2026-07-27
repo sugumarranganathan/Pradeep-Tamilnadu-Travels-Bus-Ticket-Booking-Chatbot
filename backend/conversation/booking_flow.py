@@ -13,7 +13,7 @@ from conversation.menu import (
 )
 
 from backend.conversation.seat_layout import SeatLayout
-from services.data_service import DataService
+from backend.services.data_service import DataService
 
 
 class BookingFlow:
