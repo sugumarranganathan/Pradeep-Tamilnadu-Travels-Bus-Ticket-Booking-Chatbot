@@ -2,27 +2,52 @@
 Ticket Service
 """
 
+from datetime import datetime
+import uuid
 
-def create_ticket(data):
 
-    return {
+class TicketService:
 
-        "ticket_number": data["ticket_number"],
+    def generate_ticket(self, booking):
 
-        "passenger_name": data["passenger_name"],
+        ticket = {
 
-        "route": data["route"],
+            "ticket_number":
+            f"PT-{uuid.uuid4().hex[:8].upper()}",
 
-        "bus_number": data["bus_number"],
+            "booking_date":
+            datetime.now().strftime("%d-%m-%Y"),
 
-        "seat_number": data["seat_number"],
+            "journey_date":
+            booking.get("journey_date", "Not Selected"),
 
-        "journey_date": data["journey_date"],
+            "passenger_name":
+            booking["name"],
 
-        "departure_time": data["departure_time"],
+            "mobile":
+            booking["mobile"],
 
-        "fare": data["fare"],
+            "age":
+            booking["age"],
 
-        "status": "Confirmed"
+            "gender":
+            booking["gender"],
 
-    }
+            "route":
+            booking["route"],
+
+            "bus_number":
+            booking["bus"],
+
+            "departure_time":
+            booking["time"],
+
+            "seat":
+            booking["seat"],
+
+            "status":
+            "Confirmed"
+
+        }
+
+        return ticket
