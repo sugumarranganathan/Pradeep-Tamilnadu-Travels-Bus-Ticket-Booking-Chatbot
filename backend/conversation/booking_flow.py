@@ -13,6 +13,7 @@ from conversation.menu import (
 )
 
 from conversation.seat_layout import SeatLayout
+from services.data_service import DataService
 
 
 class BookingFlow:
@@ -20,6 +21,7 @@ class BookingFlow:
     def __init__(self):
 
         self.seat_layout = SeatLayout()
+        self.data_service = DataService()
 
     def process(self, session, user_input):
 
@@ -30,17 +32,23 @@ class BookingFlow:
         # -------------------------------
         if state == ConversationState.ROUTE_SELECTION:
 
-            routes = {
-                "1": "Chennai → Madurai",
-                "2": "Chennai → Coimbatore",
-                "3": "Chennai → Salem",
-                "4": "Chennai → Trichy",
-            }
+            routes = self.data_service.get_routes()
 
-            if user_input not in routes:
+            route_map = {}
+
+            for route in routes:
+
+                route_map[str(route["id"])] = (
+                    f'{route["from"]} → {route["to"]}'
+                )
+
+            if user_input not in route_map:
                 return ROUTE_MENU
 
-            session.update("route", routes[user_input])
+            session.update(
+                "route",
+                route_map[user_input]
+            )
 
             session.set_state(
                 ConversationState.BUS_SELECTION
@@ -53,16 +61,21 @@ class BookingFlow:
         # -------------------------------
         elif state == ConversationState.BUS_SELECTION:
 
-            buses = {
-                "1": "PT101",
-                "2": "PT102",
-                "3": "PT103",
-            }
+            buses = self.data_service.get_buses()
 
-            if user_input not in buses:
+            bus_map = {}
+
+            for bus in buses:
+
+                bus_map[str(bus["id"])] = bus["bus_no"]
+
+            if user_input not in bus_map:
                 return BUS_MENU
 
-            session.update("bus", buses[user_input])
+            session.update(
+                "bus",
+                bus_map[user_input]
+            )
 
             session.set_state(
                 ConversationState.TIME_SELECTION
@@ -75,16 +88,21 @@ class BookingFlow:
         # -------------------------------
         elif state == ConversationState.TIME_SELECTION:
 
-            times = {
-                "1": "08:00 AM",
-                "2": "09:30 AM",
-                "3": "10:30 PM",
-            }
+            timings = self.data_service.get_timings()
 
-            if user_input not in times:
+            time_map = {}
+
+            for timing in timings:
+
+                time_map[str(timing["id"])] = timing["time"]
+
+            if user_input not in time_map:
                 return TIME_MENU
 
-            session.update("time", times[user_input])
+            session.update(
+                "time",
+                time_map[user_input]
+            )
 
             session.set_state(
                 ConversationState.SEAT_SELECTION
@@ -103,7 +121,10 @@ class BookingFlow:
 
                 self.seat_layout.book(seat)
 
-                session.update("seat", seat)
+                session.update(
+                    "seat",
+                    seat
+                )
 
                 session.set_state(
                     ConversationState.PASSENGER_NAME
@@ -121,7 +142,10 @@ class BookingFlow:
         # -------------------------------
         elif state == ConversationState.PASSENGER_NAME:
 
-            session.update("name", user_input)
+            session.update(
+                "name",
+                user_input
+            )
 
             session.set_state(
                 ConversationState.MOBILE_NUMBER
@@ -134,7 +158,10 @@ class BookingFlow:
         # -------------------------------
         elif state == ConversationState.MOBILE_NUMBER:
 
-            session.update("mobile", user_input)
+            session.update(
+                "mobile",
+                user_input
+            )
 
             session.set_state(
                 ConversationState.AGE
@@ -147,7 +174,10 @@ class BookingFlow:
         # -------------------------------
         elif state == ConversationState.AGE:
 
-            session.update("age", user_input)
+            session.update(
+                "age",
+                user_input
+            )
 
             session.set_state(
                 ConversationState.GENDER
@@ -162,13 +192,16 @@ class BookingFlow:
 
             genders = {
                 "1": "Male",
-                "2": "Female",
+                "2": "Female"
             }
 
             if user_input not in genders:
                 return GENDER_MENU
 
-            session.update("gender", genders[user_input])
+            session.update(
+                "gender",
+                genders[user_input]
+            )
 
             session.set_state(
                 ConversationState.CONFIRM_BOOKING
