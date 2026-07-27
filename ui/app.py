@@ -3,6 +3,7 @@ import gradio as gr
 from theme import theme
 from components import APP_TITLE
 from chatbot_ui import chatbot_reply
+from seat_ui import create_seat_buttons
 
 
 def menu_click(option, history):
@@ -34,7 +35,7 @@ with gr.Blocks(
             scale=2
         )
 
-    gr.Markdown("### Quick Menu")
+    gr.Markdown("### 🚀 Quick Menu")
 
     with gr.Row():
 
@@ -48,46 +49,105 @@ with gr.Blocks(
         btn5 = gr.Button("❌ Cancellation")
         btn6 = gr.Button("📞 Support")
 
+    # ----------------------------------
+    # Seat Selection
+    # ----------------------------------
+
+    with gr.Accordion("🪑 Seat Selection", open=False):
+
+        create_seat_buttons()
+
+    # ----------------------------------
+    # Send Button
+    # ----------------------------------
+
     send.click(
         chatbot_reply,
-        [user_input, chatbot],
-        [user_input, chatbot]
+        inputs=[
+            user_input,
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
+
+    # ----------------------------------
+    # Quick Menu Buttons
+    # ----------------------------------
 
     btn1.click(
         menu_click,
-        ["1", chatbot],
-        [user_input, chatbot]
+        inputs=[
+            "1",
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
 
     btn2.click(
         menu_click,
-        ["2", chatbot],
-        [user_input, chatbot]
+        inputs=[
+            "2",
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
 
     btn3.click(
         menu_click,
-        ["3", chatbot],
-        [user_input, chatbot]
+        inputs=[
+            "3",
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
 
     btn4.click(
         menu_click,
-        ["4", chatbot],
-        [user_input, chatbot]
+        inputs=[
+            "4",
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
 
     btn5.click(
         menu_click,
-        ["5", chatbot],
-        [user_input, chatbot]
+        inputs=[
+            "5",
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
 
     btn6.click(
         menu_click,
-        ["6", chatbot],
-        [user_input, chatbot]
+        inputs=[
+            "6",
+            chatbot
+        ],
+        outputs=[
+            user_input,
+            chatbot
+        ]
     )
+
 
 demo.launch()
