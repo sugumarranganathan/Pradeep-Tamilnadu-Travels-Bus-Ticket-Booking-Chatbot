@@ -24,9 +24,9 @@ class ConversationManager:
 
         state = self.session.get_state()
 
-        # -----------------------------
+        # ------------------------------------
         # Welcome Screen
-        # -----------------------------
+        # ------------------------------------
         if state == ConversationState.WELCOME:
 
             self.session.set_state(
@@ -35,9 +35,9 @@ class ConversationManager:
 
             return WELCOME_MENU
 
-        # -----------------------------
+        # ------------------------------------
         # Main Menu
-        # -----------------------------
+        # ------------------------------------
         if state == ConversationState.MAIN_MENU:
 
             if user_message == "1":
@@ -124,26 +124,32 @@ Email : support@pradeeptravels.com
 
             return "Please select a valid option (1-6)."
 
-        # --------------------------------
+        # ------------------------------------
         # Booking Flow
-        # --------------------------------
+        # ------------------------------------
 
         reply = self.flow.process(
             self.session,
             user_message
         )
 
-        # --------------------------------
-        # Ticket Generation
-        # --------------------------------
+        # ------------------------------------
+        # Generate Ticket
+        # ------------------------------------
 
         if self.session.get_state() == ConversationState.GENERATE_TICKET:
 
             booking = self.session.get_booking()
 
-            ticket = self.ticket_agent.generate(
+            ticket_data = self.ticket_agent.generate(
                 booking
             )
+
+            ticket = ticket_data["ticket"]
+
+            image = ticket_data["image"]
+
+            pdf = ticket_data["pdf"]
 
             ticket_text = format_ticket(ticket)
 
@@ -151,22 +157,47 @@ Email : support@pradeeptravels.com
                 ConversationState.COMPLETED
             )
 
-            return ticket_text
+            return f"""
+✅ Booking Confirmed Successfully
 
-        # --------------------------------
+{ticket_text}
+
+----------------------------------------
+
+🖼 Ticket Image
+
+{image["image_name"]}
+
+📄 Ticket PDF
+
+{pdf["pdf_name"]}
+
+Status : {pdf["status"]}
+
+Thank you for choosing
+Pradeep Tamilnadu Travels.
+"""
+
+        # ------------------------------------
         # Booking Completed
-        # --------------------------------
+        # ------------------------------------
 
-        if self.session.get_state() == ConversationState.COMPLETED:
+        if state == ConversationState.COMPLETED:
+
+            if user_message.lower() in ["hi", "hello", "start"]:
+
+                self.session = SessionManager()
+
+                return WELCOME_MENU
 
             return """
-✅ Thank you for choosing
+✅ Your booking has already been completed.
 
-Pradeep Tamilnadu Travels
+Type
 
-Your ticket has been generated successfully.
+Hi
 
-Type 'Hi' to start a new booking.
+to start a new booking.
 """
 
         return reply
