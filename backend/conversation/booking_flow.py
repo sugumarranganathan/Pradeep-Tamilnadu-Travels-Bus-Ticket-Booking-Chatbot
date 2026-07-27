@@ -12,7 +12,7 @@ from conversation.menu import (
     CONFIRM_MENU,
 )
 
-from conversation.seat_layout import SeatLayout
+from backend.conversation.seat_layout import SeatLayout
 from services.data_service import DataService
 
 
