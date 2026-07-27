@@ -44,12 +44,12 @@ with gr.Blocks(
 ) as demo:
 
     gr.Markdown(APP_TITLE)
-
     chatbot = gr.Chatbot(
-        label="🚌 Bus Ticket Booking Assistant",
-        height=500
-    )
-
+    label="🚌 Bus Ticket Booking Assistant",
+    type="messages",
+    height=500
+)
+    
     with gr.Row():
 
         user_input = gr.Textbox(
