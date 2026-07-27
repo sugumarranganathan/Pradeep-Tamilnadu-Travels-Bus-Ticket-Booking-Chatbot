@@ -1,10 +1,10 @@
-# 🚌 Pradeep Tamilnadu Travels - AI Powered Multi-Agent Bus Ticket Booking Chatbot
+# 🚌 Pradeep Tamilnadu Travels – AI Powered Multi-Agent Bus Ticket Booking Chatbot
 
-https://colab.research.google.com/drive/12x7512A0Yoydvs-msGvGUQueNlpnZ7fl#scrollTo=GvctXETG9DFu
+An intelligent **AI-powered Bus Ticket Booking Chatbot** developed using **Python, Gradio, Generative AI (GenAI), Multi-Agent Architecture, and an AutoGen-inspired Agent Workflow**.
 
-An intelligent **AI-powered Bus Ticket Booking Chatbot** developed using **Python, Gradio, Generative AI (GenAI), Multi-Agent Architecture, and an AutoGen-inspired workflow**. The chatbot enables users to book bus tickets, check bus timings, view fare details, browse available routes, contact customer support, and generate professional ticket PDFs through a conversational interface.
+The chatbot enables users to interact through a conversational interface to book bus tickets, check available routes, view bus timings, check fare details, view cancellation policies, and contact customer support.
 
-The project follows an **Agentic AI** approach where multiple AI agents collaborate to complete the entire booking process. Each agent is responsible for a specific task while the **Conversation Manager** coordinates the workflow from user interaction to ticket generation.
+The project follows an **Agentic AI** approach where multiple specialised agents collaborate to complete the booking process. A **Conversation Manager** coordinates the interaction between different agents and controls the overall booking workflow.
 
 ---
 
@@ -12,23 +12,21 @@ The project follows an **Agentic AI** approach where multiple AI agents collabor
 
 - 🤖 AI-powered conversational chatbot
 - 🚌 Bus ticket booking
-- 🛣️ Available route information
+- 🛣️ Available routes
 - 🕒 Bus timings
 - 💰 Fare details
 - ❌ Cancellation policy
 - 📞 Customer support
 - 🪑 Seat selection
-- 🎫 Automatic ticket generation
-- 📄 PDF ticket generation
-- 📥 PDF download option
+- 🎫 Booking confirmation
 - 💬 Interactive Gradio interface
 - 🧠 Multi-Agent Architecture
 - ⚙️ AutoGen-inspired workflow
-- 🚀 Google Colab & Hugging Face compatible
+- 🚀 Google Colab compatible
 
 ---
 
-# 🛠️ Technologies Used
+# 🛠 Technologies Used
 
 - Python
 - Gradio
@@ -38,11 +36,8 @@ The project follows an **Agentic AI** approach where multiple AI agents collabor
 - Object-Oriented Programming (OOP)
 - State Machine
 - Session Management
-- PDF Generation
-- Ticket Image Generation
 - GitHub
 - Google Colab
-- Hugging Face Spaces
 
 ---
 
@@ -55,170 +50,100 @@ The project follows an **Agentic AI** approach where multiple AI agents collabor
              Gradio Chat Interface
                       │
                       ▼
-           Conversation Manager
+          Conversation Manager
                       │
-        ┌─────────────┼─────────────┐
-        │             │             │
-        ▼             ▼             ▼
- Session Manager  State Machine  Booking Flow
+      ┌───────────────┼───────────────┐
+      │               │               │
+      ▼               ▼               ▼
+Session Manager   State Machine   Booking Flow
                       │
                       ▼
-               Agent Workflow
+              Agent Workflow
                       │
-      ┌─────────┬─────────┬─────────┐
+      ┌─────────┬─────────┬─────────┬─────────┐
       ▼         ▼         ▼         ▼
- Supervisor  Booking   Ticket   Support
-   Agent      Agent     Agent     Agent
-                      │
-                      ▼
-              Ticket Generator
-             ├── Image Generator
-             └── PDF Generator
+Supervisor  Booking   Ticket   Support
+  Agent      Agent     Agent     Agent
 ```
 
 ---
 
 # 🤖 Multi-Agent Architecture
 
-Instead of handling every task inside one large program, this chatbot uses multiple specialised AI agents.
+The chatbot is built using multiple specialised AI agents.
 
-Each agent performs a dedicated responsibility and communicates with the Conversation Manager to complete the user's request.
+Each agent has a dedicated responsibility, making the system modular, scalable, and easy to maintain.
 
 ---
 
 # 👨‍💼 Supervisor Agent
 
-## Responsibilities
+The **Supervisor Agent** acts as the coordinator between different agents.
+
+### Responsibilities
 
 - Receives customer requests
-- Analyses user intent
-- Routes tasks to the appropriate agent
-- Coordinates the overall workflow
-- Returns responses to the Conversation Manager
-
-### Example
-
-```
-User
-
-↓
-
-Book Ticket
-
-↓
-
-Supervisor Agent
-
-↓
-
-Booking Agent
-```
+- Identifies user intent
+- Routes requests to the correct agent
+- Coordinates the booking workflow
 
 ---
 
 # 🚌 Booking Agent
 
-The Booking Agent handles the complete ticket booking process.
+The **Booking Agent** manages the ticket booking process.
 
-## Responsibilities
+### Responsibilities
 
 - Starts ticket booking
 - Displays available routes
-- Collects passenger details
+- Collects passenger information
 - Collects mobile number
-- Collects seat number
-- Sends booking information to the Ticket Agent
-
-### Workflow
-
-```
-Book Ticket
-
-↓
-
-Select Route
-
-↓
-
-Passenger Details
-
-↓
-
-Seat Selection
-
-↓
-
-Ticket Agent
-```
+- Collects seat information
+- Passes booking data to the Conversation Manager
 
 ---
 
 # 🎫 Ticket Agent
 
-The Ticket Agent generates the final ticket.
+The **Ticket Agent** prepares booking information after confirmation.
 
-## Responsibilities
+### Responsibilities
 
-- Creates ticket number
-- Generates ticket information
-- Generates ticket image
-- Generates ticket PDF
-- Returns booking confirmation
-
-### Example Output
-
-```
-Passenger : Ramya
-
-Route : Chennai → Madurai
-
-Seat : C1
-
-Ticket No : PT-DF465880
-
-Status : Confirmed
-```
+- Generates booking details
+- Creates ticket information
+- Sends booking confirmation back to the Conversation Manager
 
 ---
 
 # 📞 Support Agent
 
-The Support Agent handles customer support queries.
+The **Support Agent** handles customer support requests.
 
-## Responsibilities
+### Responsibilities
 
 - Customer support
-- Contact information
-- Help messages
-- General assistance
-
-Example
-
-```
-📞 +91 9876543210
-
-📧 support@pradeeptravels.com
-```
+- Contact details
+- Help information
+- User assistance
 
 ---
 
 # 💬 Conversation Manager
 
-The Conversation Manager is the central controller of the chatbot.
+The **Conversation Manager** is the core controller of the chatbot.
 
-It manages the entire conversation from the welcome screen until ticket generation.
+It manages the complete conversation and coordinates communication between all agents.
 
-## Responsibilities
+### Responsibilities
 
 - Welcome screen
 - Main menu
 - Booking flow
 - Session management
-- State management
+- Conversation state management
 - Agent communication
-- Ticket generation
-
-The Conversation Manager decides which agent should perform the next task based on the current conversation state.
+- Booking confirmation
 
 ---
 
@@ -249,47 +174,40 @@ Booking Flow
 
 ↓
 
-Ticket Agent
-
-↓
-
-Ticket Service
-
-↓
-
-Image Generator
-
-↓
-
-PDF Generator
-
-↓
-
 Conversation Manager
 
 ↓
 
-Gradio Interface
+Ticket Agent
 
 ↓
 
-User receives Ticket PDF
+Booking Confirmation
+
+↓
+
+Gradio Chat Interface
+
+↓
+
+User
 ```
 
 ---
 
 # ⚙️ AutoGen-inspired Workflow
 
-This project follows an AutoGen-inspired workflow where multiple specialised agents collaborate to complete a task.
+The chatbot follows an AutoGen-inspired workflow where specialised agents collaborate to complete user requests.
 
-The workflow is responsible for:
+The workflow performs the following tasks:
 
-- Analysing user requests
-- Routing requests to the correct agent
-- Managing the execution flow
-- Returning responses to the Conversation Manager
+- Receives customer requests
+- Determines the appropriate task
+- Routes requests to the correct agent
+- Coordinates the execution flow
+- Returns responses to the Conversation Manager
 
-This modular architecture makes it easy to extend the project by adding new agents such as:
+This modular design makes it easy to extend the system by adding new agents such as:
 
 - Payment Agent
 - Cancellation Agent
@@ -300,28 +218,28 @@ This modular architecture makes it easy to extend the project by adding new agen
 
 # 🧠 Generative AI (GenAI)
 
-Generative AI is integrated into the chatbot architecture to provide intelligent conversational interactions.
+Generative AI enhances the chatbot by enabling natural conversational interactions.
 
-## GenAI Features
+### GenAI Features
 
-- Natural language interaction
-- Intelligent conversation flow
-- User-friendly booking assistance
-- Improved customer experience
-- Scalable AI architecture
+- Natural language conversation
+- Intelligent booking assistance
+- Interactive customer support
+- Improved user experience
+- Modular AI architecture
 
-The chatbot is designed so that advanced Large Language Models (LLMs) can be integrated in future versions without changing the overall architecture.
+The architecture is designed to support future integration with advanced Large Language Models (LLMs).
 
 ---
 
-# 🔄 Complete Booking Workflow
+# 🔄 Booking Workflow
 
 ```text
 User
 
 ↓
 
-Welcome
+Welcome Screen
 
 ↓
 
@@ -361,23 +279,7 @@ Booking Confirmation
 
 ↓
 
-Ticket Generation
-
-↓
-
-Ticket Image
-
-↓
-
-Ticket PDF
-
-↓
-
-Download PDF
-
-↓
-
-Booking Completed
+Conversation Completed
 ```
 
 ---
@@ -408,13 +310,11 @@ Pradeep-Tamilnadu-Travels-Bus-Ticket-Booking-Chatbot
 │   │   └── menu.py
 │   │
 │   ├── services
-│   ├── ticket
 │   ├── database
 │   ├── utils
 │   └── config
 │
 ├── ui
-│
 ├── app.py
 ├── requirements.txt
 └── README.md
@@ -422,29 +322,43 @@ Pradeep-Tamilnadu-Travels-Bus-Ticket-Booking-Chatbot
 
 ---
 
-# 🌟 Project Highlights
+# 🌟 Current Project Highlights
 
-- ✅ AI Powered Chatbot
+- ✅ AI-powered conversational chatbot
 - ✅ Multi-Agent Architecture
-- ✅ Agentic AI Workflow
-- ✅ Generative AI Integration
+- ✅ Agentic AI workflow
+- ✅ Generative AI integration
 - ✅ Conversation Manager
 - ✅ State Machine
 - ✅ Session Management
-- ✅ AutoGen-inspired Workflow
-- ✅ Ticket Generation
-- ✅ Ticket Image Generation
-- ✅ Ticket PDF Generation
-- ✅ PDF Download
-- ✅ Interactive Gradio UI
-- ✅ Google Colab Deployment
-- ✅ Hugging Face Compatible
-- ✅ Modular & Scalable Design
+- ✅ Booking workflow
+- ✅ Booking confirmation
+- ✅ Interactive Gradio interface
+- ✅ Modular project structure
+- ✅ Google Colab deployment
 
+---
 
+# 🚀 Future Enhancements
+
+- 📄 Ticket PDF generation
+- 🖼️ Ticket image generation
+- 📥 PDF download option
+- 💳 Online payment integration
+- ❌ Ticket cancellation
+- 📜 Booking history
+- 📧 Email notifications
+- 📱 SMS notifications
+- 🗄️ Database integration
+- 🧠 RAG-based knowledge base
+- 🌐 Multi-language support
+- 📊 Admin dashboard
+- ☁️ Cloud deployment
+
+---
 
 # 📌 Conclusion
 
-**Pradeep Tamilnadu Travels – AI Powered Multi-Agent Bus Ticket Booking Chatbot** demonstrates how **Generative AI**, **Agentic AI**, and a **Multi-Agent Architecture** can work together to automate the complete bus ticket booking process. The **Conversation Manager** orchestrates the conversation, the **Supervisor Agent** routes requests, specialised agents perform booking, ticket generation, and customer support, and the system produces downloadable PDF tickets through an interactive Gradio interface.
+**Pradeep Tamilnadu Travels – AI Powered Multi-Agent Bus Ticket Booking Chatbot** demonstrates how **Generative AI**, **Agentic AI**, and a **Multi-Agent Architecture** can work together to automate a conversational bus ticket booking system.
 
-The modular architecture makes the application scalable, maintainable, and ready for future enhancements such as payment integration, RAG, database connectivity, and cloud deployment.
+The **Conversation Manager** orchestrates the interaction, the **Supervisor Agent** coordinates requests, and specialised agents collaborate to complete the booking process. The modular architecture makes the application scalable, maintainable, and ready for future enhancements such as payment integration, ticket generation, database connectivity, and cloud deployment.
