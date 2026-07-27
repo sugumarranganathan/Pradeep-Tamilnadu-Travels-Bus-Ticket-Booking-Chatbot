@@ -46,7 +46,6 @@ with gr.Blocks(
     gr.Markdown(APP_TITLE)
     chatbot = gr.Chatbot(
     label="🚌 Bus Ticket Booking Assistant",
-    type="messages",
     height=500
 )
     
