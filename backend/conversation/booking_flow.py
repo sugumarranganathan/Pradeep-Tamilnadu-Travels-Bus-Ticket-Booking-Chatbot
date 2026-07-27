@@ -3,7 +3,7 @@ Booking Flow
 Pradeep Tamilnadu Travels Bus Ticket Booking Chatbot
 """
 
-from conversation.state_machine import ConversationState
+from backend.conversation.state_machine import ConversationState
 from conversation.menu import (
     ROUTE_MENU,
     BUS_MENU,
