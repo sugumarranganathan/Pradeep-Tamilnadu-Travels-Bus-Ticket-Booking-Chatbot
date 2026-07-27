@@ -4,8 +4,8 @@ Supervisor Agent
 Routes the customer's request to the appropriate agent.
 """
 
-from agents.booking_agent import BookingAgent
-from agents.support_agent import SupportAgent
+from backend.agents.booking_agent import BookingAgent
+from backend.agents.support_agent import SupportAgent
 
 
 class SupervisorAgent:
