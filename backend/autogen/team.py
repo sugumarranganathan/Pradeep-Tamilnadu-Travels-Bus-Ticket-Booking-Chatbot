@@ -9,6 +9,7 @@ from backend.agents.supervisor_agent import SupervisorAgent
 
 
 class AgentTeam:
+
     def __init__(self):
         self.booking = BookingAgent()
         self.ticket = TicketAgent()
