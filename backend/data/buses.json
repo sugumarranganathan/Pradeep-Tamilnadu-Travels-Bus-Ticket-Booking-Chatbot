@@ -1,1 +1,17 @@
-s
+[
+    {
+        "id": 1,
+        "bus_no": "PT101",
+        "type": "AC Sleeper"
+    },
+    {
+        "id": 2,
+        "bus_no": "PT102",
+        "type": "AC Seater"
+    },
+    {
+        "id": 3,
+        "bus_no": "PT103",
+        "type": "Non AC Sleeper"
+    }
+]
