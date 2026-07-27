@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from api.router import api_router
+
+from backend.api.router import api_router
 
 app = FastAPI(
     title="Pradeep Tamilnadu Travels Bus Ticket Booking Chatbot",
