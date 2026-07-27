@@ -25,12 +25,20 @@ def chatbot_reply(message, history):
     # Get chatbot response
     reply = manager.reply(message)
 
-    # Update chat history
+    # Add user message
     history.append(
-        (
-            message,
-            reply
-        )
+        {
+            "role": "user",
+            "content": message
+        }
+    )
+
+    # Add assistant response
+    history.append(
+        {
+            "role": "assistant",
+            "content": reply
+        }
     )
 
     # Clear textbox and return updated history
