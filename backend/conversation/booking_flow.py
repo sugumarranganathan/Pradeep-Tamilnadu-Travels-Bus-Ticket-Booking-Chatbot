@@ -12,8 +12,14 @@ from conversation.menu import (
     CONFIRM_MENU,
 )
 
+from conversation.seat_layout import SeatLayout
+
 
 class BookingFlow:
+
+    def __init__(self):
+
+        self.seat_layout = SeatLayout()
 
     def process(self, session, user_input):
 
@@ -31,9 +37,14 @@ class BookingFlow:
                 "4": "Chennai → Trichy",
             }
 
-            session.update("route", routes.get(user_input, ""))
+            if user_input not in routes:
+                return ROUTE_MENU
 
-            session.set_state(ConversationState.BUS_SELECTION)
+            session.update("route", routes[user_input])
+
+            session.set_state(
+                ConversationState.BUS_SELECTION
+            )
 
             return BUS_MENU
 
@@ -48,9 +59,14 @@ class BookingFlow:
                 "3": "PT103",
             }
 
-            session.update("bus", buses.get(user_input, ""))
+            if user_input not in buses:
+                return BUS_MENU
 
-            session.set_state(ConversationState.TIME_SELECTION)
+            session.update("bus", buses[user_input])
+
+            session.set_state(
+                ConversationState.TIME_SELECTION
+            )
 
             return TIME_MENU
 
@@ -65,22 +81,40 @@ class BookingFlow:
                 "3": "10:30 PM",
             }
 
-            session.update("time", times.get(user_input, ""))
+            if user_input not in times:
+                return TIME_MENU
 
-            session.set_state(ConversationState.SEAT_SELECTION)
+            session.update("time", times[user_input])
 
-            return "Enter Seat Number (Example: B3)"
+            session.set_state(
+                ConversationState.SEAT_SELECTION
+            )
+
+            return self.seat_layout.get_layout()
 
         # -------------------------------
-        # Seat
+        # Seat Selection
         # -------------------------------
         elif state == ConversationState.SEAT_SELECTION:
 
-            session.update("seat", user_input)
+            seat = user_input.upper()
 
-            session.set_state(ConversationState.PASSENGER_NAME)
+            if self.seat_layout.is_available(seat):
 
-            return "Passenger Name"
+                self.seat_layout.book(seat)
+
+                session.update("seat", seat)
+
+                session.set_state(
+                    ConversationState.PASSENGER_NAME
+                )
+
+                return "👤 Enter Passenger Name"
+
+            return (
+                "❌ Seat not available.\n\n"
+                + self.seat_layout.get_layout()
+            )
 
         # -------------------------------
         # Passenger Name
@@ -89,29 +123,35 @@ class BookingFlow:
 
             session.update("name", user_input)
 
-            session.set_state(ConversationState.MOBILE_NUMBER)
+            session.set_state(
+                ConversationState.MOBILE_NUMBER
+            )
 
-            return "Mobile Number"
+            return "📱 Enter Mobile Number"
 
         # -------------------------------
-        # Mobile
+        # Mobile Number
         # -------------------------------
         elif state == ConversationState.MOBILE_NUMBER:
 
             session.update("mobile", user_input)
 
-            session.set_state(ConversationState.AGE)
+            session.set_state(
+                ConversationState.AGE
+            )
 
-            return "Passenger Age"
+            return "🎂 Enter Passenger Age"
 
         # -------------------------------
-        # Age
+        # Passenger Age
         # -------------------------------
         elif state == ConversationState.AGE:
 
             session.update("age", user_input)
 
-            session.set_state(ConversationState.GENDER)
+            session.set_state(
+                ConversationState.GENDER
+            )
 
             return GENDER_MENU
 
@@ -120,19 +160,24 @@ class BookingFlow:
         # -------------------------------
         elif state == ConversationState.GENDER:
 
-            gender = {
+            genders = {
                 "1": "Male",
                 "2": "Female",
             }
 
-            session.update("gender", gender.get(user_input, ""))
+            if user_input not in genders:
+                return GENDER_MENU
 
-            session.set_state(ConversationState.CONFIRM_BOOKING)
+            session.update("gender", genders[user_input])
+
+            session.set_state(
+                ConversationState.CONFIRM_BOOKING
+            )
 
             return CONFIRM_MENU
 
         # -------------------------------
-        # Confirm
+        # Confirm Booking
         # -------------------------------
         elif state == ConversationState.CONFIRM_BOOKING:
 
@@ -142,10 +187,16 @@ class BookingFlow:
                     ConversationState.GENERATE_TICKET
                 )
 
-                return "Generating your ticket..."
+                return "🎫 Generating your ticket..."
 
-            session.set_state(ConversationState.MAIN_MENU)
+            elif user_input == "2":
 
-            return "Booking Cancelled."
+                session.set_state(
+                    ConversationState.MAIN_MENU
+                )
+
+                return "❌ Booking Cancelled."
+
+            return CONFIRM_MENU
 
         return ROUTE_MENU
